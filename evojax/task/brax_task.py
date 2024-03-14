@@ -61,7 +61,7 @@ class BraxTask(VectorizedTask):
     def __init__(self,
                  env_name: str,
                  max_steps: int = 1000,
-                 legacy_spring: bool = True,
+                 backend: str = 'generalized',
                  bd_extractor: Optional[BDExtractor] = None,
                  test: bool = False):
         self.max_steps = max_steps
@@ -70,7 +70,7 @@ class BraxTask(VectorizedTask):
         brax_env = create(
             env_name=env_name,
             episode_length=max_steps,
-            legacy_spring=legacy_spring,
+            backend=backend,
         )
         self.obs_shape = tuple([brax_env.observation_size, ])
         self.act_shape = tuple([brax_env.action_size, ])
